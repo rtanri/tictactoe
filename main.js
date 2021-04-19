@@ -1,7 +1,3 @@
-// 1. Create boolean on true/false for isCrossTurn
-// 2. addEventListener
-// 3. what happended if event.target.innerText has something
-
 let isCrossTurn = true
 let turnTitle = document.querySelector('#your-turn')
 let allSquare = document.querySelectorAll('.grid-item')
@@ -22,25 +18,6 @@ numClicks = 0
 let gameSquare = document.querySelector('.grid-container')
 // console.log(gameSquare)
 
-
-window.onload = function () {
-
-        // console.log(allSquare)
-        for (let i = 0; i < allSquare.length; i++) {
-                allSquare[i].addEventListener("click", setSymbol)
-        }
-}
-
-function resetGame() {
-        for (let i = 0; i < allSquare.length; i++) {
-                allSquare[i].innerText = ""
-        }
-        numClicks = 0
-        turnTitle.innerText = "Player 1 turn"
-}
-
-let resetButton = document.getElementById('reset-button')
-resetButton.addEventListener("click", resetGame)
 
 function setSymbol(event) {
         // console.log(event.target)
@@ -63,6 +40,14 @@ function setSymbol(event) {
         winningCondition()
 }
 
+
+function stopGame() {
+        for (let i = 0; i < allSquare.length; i++) {
+                allSquare[i].removeEventListener("click", setSymbol)
+        }
+}
+
+
 function winningCondition() {
         if (numClicks < 5) {
                 return
@@ -71,11 +56,11 @@ function winningCondition() {
         if (box1.innerText === box2.innerText && box2.innerText === box3.innerText && box1.innerText === box3.innerText && box1.innerText !== "") {
                 // console.log("row 1 match")
                 if (box1.innerText === "X" && box1.innerText === "X") {
-                        console.log("Player 1 Win")
                         turnTitle.innerText = "Player 1 Win!"
+                        stopGame()
                 } else {
                         turnTitle.innerText = "Player 2 Win!"
-
+                        stopGame()
                 }
         }
         // row 2 win
@@ -83,8 +68,10 @@ function winningCondition() {
                 // console.log("row 1 match")
                 if (box4.innerText === "X") {
                         turnTitle.innerText = "Player 1 Win!"
+                        stopGame()
                 } else {
                         turnTitle.innerText = "Player 2 Win!"
+                        stopGame()
                 }
         }
         // row 3 win
@@ -92,8 +79,10 @@ function winningCondition() {
                 // console.log("row 1 match")
                 if (box7.innerText === "X") {
                         turnTitle.innerText = "Player 1 Win!"
+                        stopGame()
                 } else {
                         turnTitle.innerText = "Player 2 Win!"
+                        stopGame()
                 }
         }
         // column 1
@@ -101,8 +90,10 @@ function winningCondition() {
                 // console.log("row 1 match")
                 if (box1.innerText === "X") {
                         turnTitle.innerText = "Player 1 Win!"
+                        stopGame()
                 } else {
                         turnTitle.innerText = "Player 2 Win!"
+                        stopGame()
                 }
         }
         // column 2
@@ -110,8 +101,10 @@ function winningCondition() {
                 // console.log("row 1 match")
                 if (box2.innerText === "X") {
                         turnTitle.innerText = "Player 1 Win!"
+                        stopGame()
                 } else {
                         turnTitle.innerText = "Player 2 Win!"
+                        stopGame()
                 }
         }
         // column 3
@@ -119,25 +112,58 @@ function winningCondition() {
                 // console.log("row 1 match")
                 if (box3.innerText === "X") {
                         turnTitle.innerText = "Player 1 Win!"
+                        stopGame()
                 } else {
                         turnTitle.innerText = "Player 2 Win!"
+                        stopGame()
                 }
         }
         // diagonal 1
         else if (box1.innerText === box5.innerText && box5.innerText === box9.innerText && box1.innerText === box9.innerText && box5.innerText !== "") {
                 if (box1.innerText === "X") {
                         turnTitle.innerText = "Player 1 Win!"
+                        stopGame()
                 } else {
                         turnTitle.innerText = "Player 2 Win!"
+                        stopGame()
                 }
         }
         // diagonal 2
         else if (box3.innerText === box5.innerText && box5.innerText === box7.innerText && box3.innerText === box7.innerText && box7.innerText !== "") {
                 if (box3.innerText === "X") {
                         turnTitle.innerText = "Player 1 Win!"
+                        stopGame()
                 } else {
                         turnTitle.innerText = "Player 2 Win!"
+                        stopGame()
                 }
+        } else if (numClicks === 9) {
+                turnTitle.innerText = " == it's a draw == "
         }
+}
 
+
+
+function resetGame() {
+        for (let i = 0; i < allSquare.length; i++) {
+                allSquare[i].innerText = ""
+                allSquare[i].addEventListener("click", setSymbol)
+        }
+        numClicks = 0
+        turnTitle.innerText = "Player 1 turn"
+}
+
+
+
+let resetButton = document.getElementById('reset-button')
+resetButton.addEventListener("click", resetGame)
+
+
+
+
+window.onload = function () {
+        // console.log(allSquare)
+        for (let i = 0; i < allSquare.length; i++) {
+                allSquare[i].addEventListener("click", setSymbol)
+        }
 }

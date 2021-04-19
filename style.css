@@ -8,8 +8,18 @@ body{
 }
 
 #reset-button{
-        margin: 40px auto;
+        margin: 10px auto;
+        padding: 10px 20px;
+        font-size: 28px;
+        background-color: #206a5d ;
+        color: white;
+        font-weight: 700;
+}
 
+.comment{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
 }
 
 .grid-container {
@@ -18,15 +28,15 @@ body{
         background-color: darkgrey;
         padding: 15px;
         grid-gap: 15px;
-        width: 360px;
-        margin: 40px auto auto
+        width: 330px;
+        margin: 40px auto auto;
 }
 
 .grid-item {
         background-color: rgba(255, 255, 255, 0.8);
         width: 100px;
         height: 100px;
-        font-size: 80px;
+        font-size: 90px;
         text-align: center;
 }
 
